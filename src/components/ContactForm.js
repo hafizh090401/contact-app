@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "../actions/contactActions";
-import { Space, Input, Modal } from "antd";
+import { Space, Input, Modal, message } from "antd";
 import { UserOutlined, AuditOutlined, GlobalOutlined } from "@ant-design/icons";
 
 const ContactForm = ({ open, onClose }) => {
@@ -10,6 +10,9 @@ const ContactForm = ({ open, onClose }) => {
   const [age, setAge] = useState(0);
   const [photo, setPhoto] = useState("");
 
+  const success = () => {
+    message.success("Berhasil Merubah Data");
+  };
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -23,6 +26,8 @@ const ContactForm = ({ open, onClose }) => {
     dispatch(addContact(newContact));
     setfirstName("");
     setlastName("");
+    success();
+    onclose();
   };
 
   return (
