@@ -19,7 +19,6 @@ import {
   Popconfirm,
   FloatButton,
   Tooltip,
-  Modal,
 } from "antd";
 import ContactForm from "./ContactForm";
 const { Meta } = Card;
@@ -29,10 +28,11 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(null);
-  const [modal2Open, setModal2Open] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const onClose = () => {
     setShow(null);
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -73,16 +73,10 @@ const ContactList = () => {
           height: 60,
           width: 60,
         }}
-        onClick={() => setModal2Open(true)}
+        onClick={() => setShowModal(true)}
       />
-      <Modal
-        title="Add New Contacts"
-        centered
-        open={modal2Open}
-        onCancel={() => setModal2Open(false)}
-      >
-        <ContactForm />
-      </Modal>
+
+      <ContactForm open={showModal} onClose={onClose} />
       <Row justify="space-around">
         {contacts.length > 0 ? (
           contacts.map((contact) => (

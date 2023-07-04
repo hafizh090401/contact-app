@@ -38,7 +38,7 @@ const ContactUpdate = ({
 
   return (
     <Drawer
-      title="Drawer with extra actions"
+      title="Edit Contact"
       placement="right"
       width={500}
       onClose={onClose}
